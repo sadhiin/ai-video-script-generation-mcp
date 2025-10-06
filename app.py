@@ -41,16 +41,31 @@ news text: {news_texts}
     return response
 
 # if __name__ == "__main__":
-#     st.title("Real-Time News Fetcher")
-#     st.write("Enter a topic to fetch the latest news articles.")
+    st.title("Real-Time News Fetcher and Video Script Generator")
+    st.write("Enter a topic to fetch the latest news articles.")
 
-#     query = st.text_input("News Topic", "Artificial Intelligence")
+    query = st.text_input("News Topic", "Artificial Intelligence")
 
-#     if st.button("Fetch News"):
-#         with st.spinner("Fetching news..."):
-#             try:
-#                 news = fetch_news(query)
-#                 st.subheader("Latest News:")
-#                 st.write(news)
-#             except Exception as e:
-#                 st.error(f"Error fetching news: {e.__traceback__.tb_lineno} {str(e)}")
+    if st.button("Fetch News"):
+        with st.spinner("Fetching news..."):
+            try:
+                news = fetch_news(query)
+                st.subheader("Latest News:")
+                st.write(news)
+            except Exception as e:
+                st.error(f"Error fetching news: {e.__traceback__.tb_lineno} {str(e)}")
+
+        st.title("Video Script Generator")
+        # radio button to select between news based script or custom prompt
+        script_type = st.radio("Select Script Type", ("Yes", "Custom text"))
+
+        if script_type == "Yes":
+            news_texts = st.text_area("Enter the news text to base the script on", "Artificial Intelligence is transforming the world...")
+            if st.button("Generate Script from News"):
+                with st.spinner("Generating script..."):
+                    try:
+                        script = generate_video_transcription(news_texts)
+                        st.subheader("Generated Script:")
+                        st.write(script)
+                    except Exception as e:
+                        st.error(f"Error generating script: {e.__traceback__.tb_lineno} {str(e)}")
