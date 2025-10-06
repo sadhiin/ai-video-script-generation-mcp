@@ -7,7 +7,7 @@ from typing import List, Dict, Any, Optional, Callable, Union
 from dotenv import load_dotenv
 load_dotenv()
 class LLMResponseGenerator:
-    def __init__(self, api_url: str = os.getenv("TEXT_API_URL"), api_key: str):
+    def __init__(self, api_url: str, api_key: str):
         self.api_url = api_url
         self.api_key = api_key
         self.headers = {
